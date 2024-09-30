@@ -39,18 +39,39 @@ public class DumbUno
         printGame(startPlayer);
         
         //Play the game
+        boolean gameOver = false;
         current = startPlayer;
         while (current.getData() > 1)
         {
             //Student implementation
+            current.setData(current.getData() - 1);
+            
+            if (current.getData() == 1) {
+                System.out.println("Uno!");
+            } 
+            if (current.getData() <= 0) {
+                gameOver = true;
+                System.out.println("I win!");
+            }
+            current = current.getNext();     
+            printGame(startPlayer);
         }
-        System.out.println("I win!");
         
+        System.out.println("Game over!");
     }
+            
+        
     
     private static void printGame(IntNode startPlayer)
     {
         //Student implementation
+         IntNode current = startPlayer;
+        System.out.println("Current game state:");
+        do {
+            System.out.print(current.getData() + " ");
+            current = current.getNext();
+        } while (current != startPlayer);
+        System.out.println();
     }
     
 }
